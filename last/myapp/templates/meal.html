@@ -1,0 +1,200 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>meal</title>
+        <link rel="stylesheet" href="{% static 'css/meal.css' %}">
+        
+
+    </head>
+
+
+    <body>
+
+        <header class="header">
+            <div class="container">
+                <div class="header_wrapper">
+                    <div class="header_navbar">
+                        <div class="nav"> 
+
+                            <img src="{% static 'img/navbar_burger.svg' %}" class="user_pic" onclick="toggleMenu()">
+                            <div class="sub_menu_wrap" id="subMenu">
+                                <div class="sub_menu">
+                                    <div class="user_info">
+                                        <img class="close_icon" src="{% static 'img/close_icon.svg' %}">
+                                        <img src="{% static 'img/homemade.svg' %}">
+                                        
+                                    </div>
+                                    <hr>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/profile_icon.svg' %}">
+                                        <p>Profile</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img class="ch_icon" src="{% static 'img/chef_icon.svg' %}">
+                                        <p>Our Chefs</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/menu_icon.svg' %}">
+                                        <p>Our Menu</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/orders_icon.svg' %}">
+                                        <p>My Orders</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/message_icon.svg' %}">
+                                        <p>Messages</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/like_icon.svg' %}">
+                                        <p>Following</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/help_icon.svg' %}">
+                                        <p>Help Center</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/become_chef_icon.svg' %}">
+                                        <p>Become a chef</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <a href="#" class="logo">
+                            <img src="{% static 'img/homemade.svg' %}">
+                        </a>
+                    </div>
+                
+                    <div class="search_location">
+                        <div class="location_icon_con">
+                            <img src="{% static 'img/find.svg' %}">
+                        </div>
+
+                        <input class="input_location" type="text" placeholder="Search foods and chefs">
+                            
+                    </div>
+
+                    
+                    <a class="cart_button" href="#">
+                        <img src="{% static 'img/cart_button_img.svg' %}">
+                        <div>
+                            cart(0)  
+                        </div>
+                    </a>
+                    
+
+
+                </div>
+            </div>
+        </header>
+
+        <div class="food_information">
+            <img src="{{meal.photo_link}}">
+            <div class="food_title">
+                <h2>{{meal.title}}</h2>
+                <h3>{{meal.price}} tg / for 1 person</h3>
+                <p> {{meal.desc}}</p>
+                {% if jurgen and jurgen.role == "customer" %}
+                <form method="post" action="/order/">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{jurgen.id}}" name="jur">
+                    <input type="hidden" value="{{meal.id}}" name="meal_id">
+                    <button class="order_button" type="submit">Order</button>
+                </form>
+                {% else %}
+                    <button class="order_button" onclick="/login/">Order</button>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="ingredients">
+            <h2>Ingredients </h2>
+            <h3>
+                {{meal.ingredient}}
+            </h3>
+        </div>
+
+
+        <div class="reviews">
+            <h2>Reviews</h2>
+            <div class="review_card_block">
+                <div class="review_card">
+                    <h2>Title of meal</h2>
+                    <p>HomeEat has been a game-changer for me. I can now share my passion for cooking with others and earn money from it. It's a win-win!</p>
+                    <div class="review_card_footer">
+                        <img src="{% static 'img/review_card_footer_img.png' %}">
+                        <p>Isabella Chavez</p>
+                    </div>
+                </div>
+
+                <div class="review_card">
+                    <h2>Title of meal</h2>
+                    <p>HomeEat has been a game-changer for me. I can now share my passion for cooking with others and earn money from it. It's a win-win!</p>
+                    <div class="review_card_footer">
+                        <img src="{% static 'img/review_card_footer_img.png' %}">
+                        <p>Isabella Chavez</p>
+                    </div>
+                </div>
+
+                <div class="review_card">
+                    <h2>Title of meal</h2>
+                    <p>HomeEat has been a game-changer for me. I can now share my passion for cooking with others and earn money from it. It's a win-win!</p>
+                    <div class="review_card_footer">
+                        <img src="{% static 'img/review_card_footer_img.png' %}">
+                        <p>Isabella Chavez</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        let subMenu = document.getElementById("subMenu");
+        let closeIcon = document.querySelector(".close_icon");
+
+        function toggleMenu() {
+            subMenu.classList.toggle("open_menu");
+        }
+
+        closeIcon.addEventListener("click", function() {
+        subMenu.classList.remove("open_menu");
+        });
+
+
+    </script>
+
+
+
+    </body>
+</html>

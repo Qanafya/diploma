@@ -1,0 +1,505 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>our_menu</title>
+        <link rel="stylesheet" href="{% static 'css/our_menu.css' %}">
+        
+
+    </head>
+    <body>
+
+    <header class="header">
+            <div class="container">
+                <div class="header_wrapper">
+                    <div class="header_navbar">
+                        <div class="nav">
+
+                            <img src="{% static 'img/navbar_burger.svg' %}" class="user_pic" onclick="toggleMenu()">
+                            <div class="sub_menu_wrap" id="subMenu">
+                                <div class="sub_menu">
+                                    <div class="user_info">
+                                        <img class="close_icon" src="{% static 'img/close_icon.svg' %}">
+                                        <img src="{% static 'img/homemade.svg' %}">
+                                    </div>
+                                    <hr>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/profile_icon.svg' %}">
+                                        <p>Profile</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img class="ch_icon" src="{% static 'img/chef_icon.svg' %}">
+                                        <p>Our Chefs</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/menu_icon.svg' %}">
+                                        <p>Our Menu</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/orders_icon.svg' %}">
+                                        <p>My Orders</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/message_icon.svg' %}">
+                                        <p>Messages</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/like_icon.svg' %}">
+                                        <p>Following</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/help_icon.svg' %}">
+                                        <p>Help Center</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/become_chef_icon.svg' %}">
+                                        <p>Become a chef</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="logo">
+                            <img src="{% static 'img/homemade.svg' %}">
+                        </a>
+                    </div>
+
+                    <div class="search_location">
+                        <div class="location_icon_con">
+                            <img src="{% static 'img/find.svg' %}">
+                        </div>
+
+                        <input class="input_location" type="search" placeholder="Search foods and chefs">
+
+                    </div>
+
+
+                    <a class="cart_button" href="#">
+                        <img src="{% static 'img/cart_button_img.svg' %}">
+                        <div>
+                            cart(0)
+                        </div>
+                    </a>
+
+
+
+                </div>
+            </div>
+        </header>
+
+
+
+        <div class="filter">
+            <div class="select">
+                <select name="format" id="format">
+                    <option selected disabled>All cuisines</option>
+                    <option value="pdf">Kazakh</option>
+                    <option value="txt">Uzbek</option>
+                    <option value="epub">Korean</option>
+                    <option value="fb2">Uyghur</option>
+                    <option value="mobi">Bakery</option>
+                </select>
+            </div>
+
+
+            
+
+
+            <div class="select">
+                <select name="format" id="format2">
+                    <option selected disabled>Sort by</option>
+                    <option value="pdf">Ratings</option>
+                    <option value="txt">Price</option>
+                </select>
+            </div>
+
+
+           <div class="checkbox-wrapper">
+            <input id="terms-checkbox-37" name="checkbox" type="checkbox">
+                <label class="terms-label" for="terms-checkbox-37">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 200 200" class="checkbox-svg">
+                        <mask fill="white" id="path-1-inside-1_476_5-37">
+                            <rect height="200" width="200"></rect>
+                        </mask>
+                        <rect mask="url(#path-1-inside-1_476_5-37)" stroke-width="40" class="checkbox-box" height="200" width="200"></rect>
+                        <path stroke-width="15" d="M52 111.018L76.9867 136L149 64" class="checkbox-tick"></path>
+                    </svg>
+                    <span class="label-text">Available today</span>
+                </label>
+            </div>
+    
+        </div>
+
+
+
+        <div class="container_our_menu">
+            
+
+            <div class="most_loved_food">
+                <div class="top_block">
+
+                        <h2 align="center" class="top_title">Most loved food</h2>
+
+                        <div class="top_card_block">
+
+                            {% if meal %}
+                                {% for q in meal %}
+                                <div class="top_card">
+                        
+                                <a href="/meal/{{q.id}}/"><img class="top_card_logo" src="{{ q.photo_link }}"></a>
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">{{q.title}}</h3>
+                                            <p align="center" class="top_card_text">
+                                                {% for w in chef %}
+                                                    {% if w.id == q.chef_id %}
+                                                        by {{w.first_name}} {{w.last_name}}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            {{q.price}} tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="{% static 'img/top_card_rating.svg' %}">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                {% endfor %}
+                            {% endif %}
+                            
+
+                        </div>
+                </div>
+            </div>
+
+            <div class="categories">
+                <div class="top_block">
+
+                        <h2 align="center" class="top_title">Categories</h2>
+
+                        <div class="top_card_block">
+
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src=" {% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Kazakh cuisines</h3>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">25 dishes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Kazakh cuisines</h3>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">25 dishes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Kazakh cuisines</h3>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">25 dishes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Kazakh cuisines</h3>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">25 dishes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Kazakh cuisines</h3>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">25 dishes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Kazakh cuisines</h3>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">25 dishes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                </div>
+            </div>
+
+            <div class="previous_orders">
+                <div class="top_block">
+
+                        <h2 align="center" class="top_title">Pervious orders</h2>
+
+                        <div class="top_card_block">
+
+
+                            <div class="top_card">
+                        
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Title of the meal</h3>
+                                            <p align="center" class="top_card_text">by FirstName LastName</p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            900 tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="{% static 'img/top_card_rating.svg' %}">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Title of the meal</h3>
+                                            <p align="center" class="top_card_text">by FirstName LastName</p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            900 tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="img/top_card_rating.svg">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Title of the meal</h3>
+                                            <p align="center" class="top_card_text">by FirstName LastName</p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            900 tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="{% static 'img/top_card_rating.svg' %}">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Title of the meal</h3>
+                                            <p align="center" class="top_card_text">by FirstName LastName</p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            900 tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="{% static 'img/top_card_rating.svg' %}">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Title of the meal</h3>
+                                            <p align="center" class="top_card_text">by FirstName LastName</p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            900 tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="{% static 'img/top_card_rating.svg' %}">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Title of the meal</h3>
+                                            <p align="center" class="top_card_text">by FirstName LastName</p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            900 tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="{% static 'img/top_card_rating.svg' %}">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                </div>
+            </div>
+        </div>
+
+<script src="./js/tabs.js"></script>
+<script src="./js/index.js"></script>
+<script type="text/javascript">
+        let subMenu = document.getElementById("subMenu");
+        let closeIcon = document.querySelector(".close_icon");
+
+        function toggleMenu() {
+            subMenu.classList.toggle("open_menu");
+        }
+
+        closeIcon.addEventListener("click", function() {
+        subMenu.classList.remove("open_menu");
+        });
+</script>
+    </body>
+</html>
+
+
+
+

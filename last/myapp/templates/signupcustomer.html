@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/signcustomer.css' %}">
+</head>
+<body>
+    <div class="div">
+  <img
+    loading="lazy"
+    srcset="{% static 'img/bg login.png' %}"
+    class="img"
+  />
+  <div class="div-2">
+    <div class="div-3">
+      <span style="font-weight: 400; font-size: 28px; line-height: 42px">
+        Home
+      </span>
+      <span
+        style="
+          font-family: Dancing Script, -apple-system, Roboto, Helvetica,
+            sans-serif;
+          font-weight: 700;
+          font-size: 48px;
+          line-height: 58px;
+          color: rgba(253, 143, 44, 1);
+        "
+      >
+        Made
+      </span>
+    </div>
+    <div class="div-4">
+      <div class="div-5">Log in</div>
+      <div class="div-6">Sign up</div>
+    </div>
+  </div>
+  <div class="div-7">
+    <div class="div-8">Sign up</div>
+    <div class="div-9">To order some food, you need to sign up here.</div>
+    <form method="post" id="RegisterForm" action="/signupcustomer/">
+      {% csrf_token %}
+      <div class="div-10">Email</div>
+      <div class="div-11"><input type="email" class="username" name="email" placeholder=""></div>
+      <div class="div-12">Password</div>
+      <div class="div-13">
+        <input type="password" class="password" name="password" id="pass1">
+      </div>
+      <div class="hide-10">
+        <div class="hide-11">Verify password</div>
+        <div class="hide-12">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/bf5549b4b6227c796b29704a7939468d3ffa6575d3837dea7fa971a26c0814fe?apiKey=2a84a62ce8114e98bef0b3ff815ac598&"
+            class="ihide-2"
+          />
+          <div class="hide-13"><input type="checkbox" id="ch"><label for="ch">Show</label></div>
+        </div>
+      </div>
+      <div class="div-13">
+        <input type="password" class="password" id="pass2">
+      </div>
+
+      <div class="div-26">
+        <input type="checkbox" id="checkbox">
+        <div class="div-27">I accept Term of Service and the Privacy Policy</div>
+      </div>
+      <button class="div-28" type="submit">Sign up</button>
+    </form>
+
+  </div>
+</div>
+
+<script>
+document.getElementById("RegisterForm").addEventListener("submit", function(event) {
+    var checkbox = document.getElementById("checkbox");
+    var pass1 = document.getElementById("pass1").value;
+    var pass2 = document.getElementById("pass2").value;
+
+    if (pass1 == pass2) {
+      if (checkbox.checked) {
+          this.action = "/signupcustomer/";
+      } else {
+          event.preventDefault();
+      }
+    } else if (checkbox.checked) {
+      alert("Passwords don't match");
+      event.preventDefault();
+    } else {
+      event.preventDefault();
+    }
+});
+
+
+</script>
+
+</body>
+</html>

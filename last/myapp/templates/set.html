@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/set.css' %}">
+</head>
+<body>
+
+<header class="header">
+            <div class="container">
+                <div class="header_wrapper">
+                    <div class="header_navbar">
+                        <div class="nav">
+
+                            <img src="{% static 'img/navbar_burger.svg' %}" class="user_pic" onclick="toggleMenu()">
+                            <div class="sub_menu_wrap" id="subMenu">
+                                <div class="sub_menu">
+                                    <div class="user_info">
+                                        <img class="close_icon" src="{% static 'img/close_icon.svg' %}">
+                                        <img src="{% static 'img/homemade.svg' %}">
+                                    </div>
+                                    <hr>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/profile_icon.svg' %}">
+                                        <p>Profile</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img class="ch_icon" src="{% static 'img/chef_icon.svg' %}">
+                                        <p>Our Chefs</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/menu_icon.svg' %}">
+                                        <p>Our Menu</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/orders_icon.svg' %}">
+                                        <p>My Orders</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/message_icon.svg' %}">
+                                        <p>Messages</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/like_icon.svg' %}">
+                                        <p>Following</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/help_icon.svg' %}">
+                                        <p>Help Center</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/become_chef_icon.svg' %}">
+                                        <p>Become a chef</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="logo">
+                            <img src="{% static 'img/homemade.svg' %}">
+                        </a>
+                    </div>
+
+                    <div class="search_location">
+                        <div class="location_icon_con">
+                            <img src="{% static 'img/find.svg' %}">
+                        </div>
+
+                        <input class="input_location" type="search" placeholder="Search foods and chefs">
+
+                    </div>
+
+
+                    <a class="cart_button" href="#">
+                        <img src="{% static 'img/cart_button_img.svg' %}">
+                        <div>
+                            cart(0)
+                        </div>
+                    </a>
+
+
+
+                </div>
+            </div>
+        </header>
+
+<section class="discover-chefs">
+  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/db7f75f326969670ca6f06d114f0832c3622bd41bad0f906fd2ff15c8a8f53af?apiKey=2a84a62ce8114e98bef0b3ff815ac598&" alt="" class="discover-chefs__background" loading="lazy" />
+  <h2 class="discover-chefs__title">Discover Our Chefs</h2>
+  <p class="discover-chefs__description">Experience a World of Culinary Delights</p>
+</section>
+
+<div class="chef">Our chefs</div>
+
+{% if meal %}
+  {% for q in chef %}
+    {% if detail %}
+      {% for e in detail %}
+        {% if e.chef_id == q.id %}
+          {% if e.is_active == True %}
+            <div class="eve0">
+              <div class="eve">
+          <div class="eve-2">
+            <div class="coleve">
+              <div class="eve-3">
+                <div class="eve-4"></div>
+                <div class="eve-5">
+                  <div class="eve-6">
+                    Mediterranean, Egyptian, Middle
+                    <br />
+                    Eastern
+                  </div>
+                  <div class="eve-7">{{q.first_name}} {{q.last_name}}</div>
+                  <div class="eve-8">
+                    <div class="eve-9">Almaty, {{q.address}}</div>
+                    <div class="eve-10">
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/db6ac3e0a174df6134b2a2c13f6c9a8ee04771a392e59e3c846552273747a308?apiKey=2a84a62ce8114e98bef0b3ff815ac598&"
+                        class="ieve"
+                      />
+                      <div class="eve-11">4.9</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="coleve-2">
+              <div class="eve-12">
+                <div class="eve-13">
+                  The food was absolutely delicious and the flavors were amazing. Great
+                  <br />
+                  shef and will order from her again and again.
+                </div>
+                <div class="eve-14">John M, Verified customer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+              <div class="evc-13">
+              {% for w in meal %}
+                {% if w.chef_id == q.id %}
+
+                  <div class="evc">
+          <div class="evc-2">
+            <div class="colevc">
+              <img
+                loading="lazy"
+                srcset="{{w.photo_link}}"
+                class="ievc"
+              />
+            </div>
+            <div class="colevc-2">
+              <div class="evc-3">
+                <div class="evc-4">
+                    <form action="/meal/{{w.id}}/" method="post" id="myForm">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{jurgen.id}}" name="jur">
+                        <button type="submit" class="but">{{w.title}}</button>
+                  </form>
+                </div>
+                <div class="evc-5">
+                  {{w.desc}}
+                </div>
+                <div class="evc-6">
+                  <div class="evc-7">
+                    <div class="evc-8">
+                      <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/126d19b3b7e5dd1a50261709a23319078fa59a181a3f331544f88e34c6d9493d?apiKey=2a84a62ce8114e98bef0b3ff815ac598&"
+                        class="ievc-2"
+                      />
+                      <div class="evc-9">4.9(321)</div>
+                    </div>
+                    <div class="evc-10">{{w.category}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+
+<div class="space"></div>
+
+
+
+<script src="./js/tabs.js"></script>
+<script src="./js/index.js"></script>
+<script type="text/javascript">
+
+        let subMenu = document.getElementById("subMenu");
+        let closeIcon = document.querySelector(".close_icon");
+
+        function toggleMenu() {
+            subMenu.classList.toggle("open_menu");
+        }
+
+        closeIcon.addEventListener("click", function() {
+        subMenu.classList.remove("open_menu");
+        });
+
+
+</script>
+</body>
+</html>

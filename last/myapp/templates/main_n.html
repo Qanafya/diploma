@@ -1,0 +1,370 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>main</title>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    </head>
+    <body>
+
+
+        <header class="header">
+            <div class="container">
+                <div class="header_wrapper">
+
+                    <div class="header_navbar">
+                        <div class="nav"> 
+
+                            <img src="{% static 'img/navbar_burger.svg' %}">
+                            
+                        </div>
+
+                        <a href="#" class="logo">
+                            <img src="{% static 'img/homemade.svg' %}">
+                        </a>
+                    </div>
+                
+
+
+                    <div class="header_login">
+                        <a class="login_btn" href="#">
+                            Log in
+                        </a>
+
+
+                        <a class="signup_btn" href="#">
+                            Sign up
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+            
+        </header>
+
+
+
+         <div class="intro" style="background-image:url('{% static 'img/background_intro.png' %}');">
+            <div class="container">
+                <div class="intro_wrapper">
+                    <div class="intro_block">
+                        <h1 align="center" class="intro_title">Short on time but craving home-cooked food?</h1>
+
+                        <div class="search_location">
+                            <div class="location_icon_con">
+                                <img src="{% static 'img/location_icon.svg' %}">
+                            </div>
+
+                            <input class="input_location" type="text" placeholder="Enter delivery address">
+                            
+                        </div>
+
+                        <div class="share_location">
+                            <div class="share_logo">
+                                <img src="{% static 'img/share_logo.svg' %}">
+                            </div>
+                            <a href="#" class="share_text">
+                                Share location with us
+                            </a>
+                            
+
+                        </div>
+
+                    </div>  
+                    
+                </div>
+                
+            </div>
+             
+         </div>
+
+
+
+         <div class="why">
+            <div class="container">
+                <div class="why_wrapper">
+                    <div class="why_block">
+
+                        <h2 align="center" class="why_title">Why HomeMade?</h2>
+
+                        <div class="why_card_block">
+                            <div class="why_card">
+                                <div class="why_card_logo">
+                                    <img src="{% static 'img/pasta_card_logo.svg' %}">
+                                </div>
+                                <div class="why_card_text">
+                                    <h3 align="center" class="card_title">Taste the comfort of home</h3>
+                                    <p align="center" class="card_text">Experience the warmth and nostalgia of homemade meals.</p>
+                                </div>
+                            </div>
+
+                            <div class="why_card">
+                                <div class="why_card_logo">
+                                    <img src="{% static 'img/chefs_card_logo.svg' %}">
+                                </div>
+                                <div class="why_card_text">
+                                    <h3 align="center" class="card_title">Support local cooks</h3>
+                                    <p align="center" class="card_text">Empower local chefs and homemakers by enjoying their delicious creations.</p>
+                                </div>
+                            </div>
+
+                            <div class="why_card">
+                                <div class="why_card_logo">
+                                    <img src="{% static 'img/money_card_logo.svg' %}">
+                                </div>
+                                <div class="why_card_text">
+                                    <h3 align="center" class="card_title">Earn money with HomeMade</h3>
+                                    <p align="center" class="card_text">Chefs can earn money by sharing their culinary talents with the community.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+             
+         </div>
+
+
+
+         <div class="top_food">
+            <div class="container">
+                <div class="top_wrapper">
+                    <div class="top_block">
+
+                        <h2 align="center" class="top_title">Most loved food</h2>
+
+                        <div class="top_card_block">
+
+
+                            <div class="top_card">
+                        
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Title of the meal</h3>
+                                            <p align="center" class="top_card_text">by FirstName LastName</p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            900 tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="{% static 'img/top_card_rating.svg' %}">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Title of the meal</h3>
+                                            <p align="center" class="top_card_text">by FirstName LastName</p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            900 tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="{% static 'img/top_card_rating.svg' %}">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="top_card">
+                                <img class="top_card_logo" src="{% static 'img/food_card_logo1.png' %}">
+                                <div class="top_card_description">
+                                    <div class="top_card_title_block">
+                                        <div class="top_card_title">
+                                            <h3 align="center" class="top_card_h3">Title of the meal</h3>
+                                            <p align="center" class="top_card_text">by FirstName LastName</p>
+                                        </div>
+                                        <div class="top_card_coordination">
+                                            <p align="center">15 km near you</p>
+                                        </div>
+                                    </div>
+                                    <div class="top_card_footer">
+                                        <div class="top_card_price">
+                                            900 tg
+                                        </div>
+                                        <div class="top_card_rating">
+                                            <img src="{% static 'img/top_card_rating.svg' %}">
+                                            <p>4.9</p>
+                                        </div>
+                                        <div class="top_card_access">
+                                            <img src="{% static 'img/top_card_access.svg' %}">
+                                            <p>Not available this week</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div> 
+
+
+
+         <div class="review" style="background-image:url('{% static 'img/background_review.png' %}');">
+            <div class="container">
+                <div class="review_block">
+                    <div class="review_title">
+                        What our customer says
+                    </div>
+                    <div class="review_card_block">
+                        <div class="review_card">
+                            <p>HomeEat has been a game-changer for me. I can now share my passion for cooking with others and earn money from it. It's a win-win!</p>
+                            <div class="review_card_footer">
+                                <img src="{% static 'img/review_card_footer_img.png' %}">
+                                <p>Isabella Chavez</p>
+                            </div>
+                        </div>
+
+                        <div class="review_card">
+                            <p>HomeEat has been a game-changer for me. I can now share my passion for cooking with others and earn money from it. It's a win-win!</p>
+                            <div class="review_card_footer">
+                                <img src="{% static 'img/review_card_footer_img.png' %}">
+                                <p>Isabella Chavez</p>
+                            </div>
+                        </div>
+
+                        <div class="review_card">
+                            <p>HomeEat has been a game-changer for me. I can now share my passion for cooking with others and earn money from it. It's a win-win!</p>
+                            <div class="review_card_footer">
+                                <img src="{% static 'img/review_card_footer_img.png' %}">
+                                <p>Isabella Chavez</p>
+                            </div>
+                        </div>
+
+
+                    
+                    </div>
+                </div>
+            </div>
+         </div>
+
+
+
+
+
+         <div class="chefs">
+            <div class="container">
+                <div class="chefs_wrapper_block">
+                    <img class="chefs_image" src="{% static 'img/chefs_image.png' %}" >
+                    <div class="chefs_title">
+                        <h2 align="center">Meet the chefs</h2>
+                        <p align="center">Local talented cooks that offer delicious meals made with fresh ingredients that you can feel good about eating.</p>
+                    </div>
+                </div>
+                
+            </div>
+             
+         </div>
+
+
+
+         <div class="become_chef">
+            <div class="container">
+                <div class="title_become_chef">
+                    <h2>How to become a chef ?</h2>
+                </div>
+
+                <div class="block_become_chef">
+                    <div class="block1_become_chef">
+                        <div class="text_block1_become_chef">
+                            <h2>Pass the Cooking Skills Exam for Quality and Safety</h2>
+                            <p>At HomeEat, we prioritize quality and safety. To ensure that our home chefs meet the highest standards, they must pass a rigorous cooking skills exam.</p>
+                        </div>
+                        <div class="steps_block1_become_chef">
+                            <div class="step">
+                                <img src="{% static 'img/step1_img.svg' %}">
+                                <h2>Get approved to cook</h2>
+                                <p>1. Sign up and create your personal menu of dishes.</p>
+                            </div>
+                            <div class="step">
+                                <img src="{% static 'img/step2_img.svg' %}">
+                                <h2>Pass exam</h2>
+                                <p>2.Demonstrate Your Cooking Skills in a Online Session</p>
+                            </div>
+                        </div>
+                        <a class="signup_btn" href="#">
+                            Sign up
+                        </a>
+                    </div>
+
+
+                    <div class="block2_become_chef">
+                        <div class="img1_become_chef">
+                            <img src="{% static 'img/img1_become_chef.png' %}">
+                        </div>
+                        <div class="img2_become_chef">
+                            <img id="img-1_become_chef" src="{% static 'img/img-1_become_chef.png' %}">
+                            <img id="img-2_become_chef" src="{% static 'img/img-2_become_chef.png' %}">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+             
+         </div>
+
+
+
+         <div class="footer">
+            <div class="container">
+                <div class="block_footer">
+                    <div class="nav_footer">
+                        <nav>
+                            <ul id="MenuItems">
+                                <li><a href="home.html">About us</a></li>
+                                <li><a href="products.html">Our chefs</a></li>
+                                <li><a href="account.html">Our menu</a></li>
+                                <li><a href="about.html">Become a chef</a></li>
+                                <li><a href="support.html">FAQ</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <p class="rights_footer">@All rights Reserved. by CompanyName</p>
+                    
+                </div>
+                
+            </div>
+             
+         </div>
+
+    </body>
+</html>

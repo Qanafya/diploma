@@ -1,0 +1,235 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>user_profile</title>
+        <link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+        
+
+    </head>
+
+
+    <body>
+
+        <header class="header">
+            <div class="container">
+                <div class="header_wrapper">
+                    <div class="header_navbar">
+                        <div class="nav"> 
+
+                            <img src="{% static 'img/navbar_burger.svg' %}">
+                            <div class="sub_menu_wrap">
+                                <div class="sub_menu">
+                                    <div class="user-info">
+                                        <img class="close_icon" src="{% static 'img/close_icon.svg' %}">
+                                        <img src="{% static 'img/homemade.svg' %}">
+                                        
+                                    </div>
+                                    <hr>
+
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/profile_icon.svg' %}">
+                                        <p>Profile</p>
+                                        <span></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/chef_icon.svg' %]">
+                                        <p>Our Chefs</p>
+                                        <span></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/menu_icon.svg' %}">
+                                        <p>Our Menu</p>
+                                        <span></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/orders_icon.svg' %}">
+                                        <p>My Orders</p>
+                                        <span></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/message_icon.svg' %}">
+                                        <p>Messages</p>
+                                        <span></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src=" {% static 'img/like_icon.svg' %}">
+                                        <p>Following</p>
+                                        <span></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/help_icon.svg' %}">
+                                        <p>Help Center</p>
+                                        <span></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/become_chef_icon.svg' %}">
+                                        <p>Become a chef</p>
+                                        <span></span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <a href="#" class="logo">
+                            <img src="{% static 'img/homemade.svg' %}">
+                        </a>
+                    </div>
+                
+                    <div class="search_location">
+                        <div class="location_icon_con">
+                            <img src="{% static 'img/find.svg' %}">
+                        </div>
+
+                        <input class="input_location" type="text" placeholder="Search foods and chefs">
+                            
+                    </div>
+
+                    
+                    <a class="cart_button" href="#">
+                        <img src="{% static 'img/cart_button_img.svg' %}">
+                        <div>
+                            cart(0)  
+                        </div>
+                    </a>
+                    
+
+
+                </div>
+            </div>
+        </header>
+
+        <div class="wrapper">
+
+            <ul class="row">
+                <li data-tab="tab-1" tabindex="0" class="title">Profile</li>
+                <li data-tab="tab-2" tabindex="0" class="title">Payment method</li>
+                <li data-tab="tab-3" tabindex="0" class="title">Settings</li>
+            </ul>
+            <div class="block">
+                <div id="tab-1" class="content">
+                    <div class="tab-1_wrapper">
+                        <div class="img_avatar">
+                        <!-- <img src="img/"> -->
+                        <button><img src="{% static 'img/img_plus.svg' %}"></button>
+                        </div>
+                        <div class="all_info">
+                            <div class="info_user_profile">
+                                <div class="name_user_profile">Vakhabov Matkarim</div>
+                                <div class="email">
+                                    <h2>Email</h2>
+                                    <p>matkarimw@mail.ru</p>
+                                </div>
+                                <div class="address">
+                                    <h2>Address</h2>
+                                    <p>Zhazira street 5/1</p>
+                                </div>
+                            </div>
+                            <div class="phone_number">
+                                <h2>Phone number</h2>
+                                <p>+7 747 238 3190</p>
+                            </div>
+                        </div>
+                        <button class="change_button">
+                            Change
+                        </button>
+                    </div>
+                </div>
+                <div id="tab-2" class="content">
+                    <div class="tab-2_wrapper">
+                        <div class="payment_title">Payment method</div>
+                        <div class="info_payment_card">
+                            <div class="card_number">
+                                <h2>Card number</h2>
+                                <p>1234 1234 1234 1234</p>
+                            </div>
+                            <div class="ex_date">
+                                <h2>Expiration date</h2>
+                                <p>MM/YY</p>
+                            </div>
+                            <div class="cvc">
+                                <h2>CVC</h2>
+                                <p>CVC</p>
+                            </div>
+                        </div>
+                        <button class="add_card">
+                            Add new card
+                        </button>
+                    </div>
+                </div>
+                <div id="tab-3" class="content">
+                
+                </div>
+            </div>
+        </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            tabs();
+        });
+
+        const tabs = () => {
+
+            function bindTabs(titleClass, contentClass, activeClass, startTitleClass, startContentClass) {
+
+                const title = document.querySelectorAll(titleClass);
+                const content = document.querySelectorAll(contentClass);
+                const startTitle = document.querySelector(startTitleClass);
+                const startContent = document.querySelector(startContentClass);
+
+                // Обработчик нажатия клавиш на табах
+                title.forEach((item, index) => {
+                    item.addEventListener('keydown', event => {
+                        if (event.key === 'ArrowLeft') {
+                            // Если нажата клавиша влево, выбираем предыдущий таб
+                            const prevIndex = (index - 1 + title.length) % title.length;
+                            title[prevIndex].focus();
+                            event.preventDefault();
+                        } else if (event.key === 'ArrowRight') {
+                            // Если нажата клавиша вправо, выбираем следующий таб
+                            const nextIndex = (index + 1) % title.length;
+                            title[nextIndex].focus();
+                            event.preventDefault();
+                        } else if (event.key === 'Enter' || event.key === ' ') {
+                            // Если нажата клавиша Enter или пробел, активируем таб
+                            item.click();
+                            event.preventDefault();
+                        }
+                    });
+                });
+
+                // Обработчик кликов на табах
+                title.forEach(item => item.addEventListener('click', () => {
+                    if (item.classList.contains(activeClass)) {
+                        return;
+                    }
+                
+                    title.forEach(element => {
+                        element.classList.remove(activeClass);
+                    });
+
+                    item.classList.add(activeClass);
+
+                    content.forEach(element => {
+                        element.classList.remove(activeClass);
+                    });
+                
+                    const activeContent = document.querySelector('#' + item.dataset.tab);
+                    activeContent.classList.add(activeClass);
+                }));
+
+                // При первой загрузке страницы, активны эти табы
+                startTitle.classList.add(activeClass);
+                startContent.classList.add(activeClass);
+            }
+
+            // Табы со знаменитостями
+            bindTabs('.title', '.content', 'active', '[data-tab="tab-1"]', '#tab-1');
+        }
+
+    </script>
+
+    </body>
+</html>

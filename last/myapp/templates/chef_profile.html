@@ -1,0 +1,675 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>chef_profile</title>
+        <link rel="stylesheet" href="{% static 'css/chef_profile.css' %}">
+        
+
+    </head>
+
+
+    <body>
+
+        <header class="header">
+            <div class="container">
+                <div class="header_wrapper">
+                    <div class="header_navbar">
+                        <div class="nav"> 
+
+                            <img src="{% static 'img/navbar_burger.svg' %}" class="user_pic" onclick="toggleMenu()">
+                            <div class="sub_menu_wrap" id="subMenu">
+                                <div class="sub_menu">
+                                    <div class="user_info">
+                                        <img class="close_icon" src="{% static 'img/close_icon.svg' %}">
+                                        <img src="{% static 'img/homemade.svg' %}">
+                                        
+                                    </div>
+                                    <hr>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/profile_icon.svg' %}">
+                                        <p>Profile</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img class="ch_icon" src="{% static 'img/chef_icon.svg' %}">
+                                        <p>Our Chefs</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/menu_icon.svg' %}">
+                                        <p>Our Menu</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/orders_icon.svg' %}">
+                                        <p>My Orders</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/message_icon.svg' %}">
+                                        <p>Messages</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/like_icon.svg' %}">
+                                        <p>Following</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/help_icon.svg' %}">
+                                        <p>Help Center</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/become_chef_icon.svg' %}">
+                                        <p>Become a chef</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <a href="#" class="logo">
+                            <img src="{% static 'img/homemade.svg' %}">
+                        </a>
+                    </div>
+                
+                    <div class="search_location">
+                        <div class="location_icon_con">
+                            <img src="{% static 'img/find.svg' %}">
+                        </div>
+
+                        <input class="input_location" type="text" placeholder="Search foods and chefs">
+                            
+                    </div>
+
+                    
+                    <a class="cart_button" href="#">
+                        <img src="{% static 'img/cart_button_img.svg' %}">
+                        <div>
+                            cart(0)  
+                        </div>
+                    </a>
+                    
+
+
+                </div>
+            </div>
+        </header>
+
+        <div class="wrapper">
+            <ul class="row">
+                <li data-tab="tab-1" tabindex="0" class="title">Profile</li>
+                <li data-tab="tab-3" tabindex="0" class="title">Reviews</li>
+                <li data-tab="tab-4" tabindex="0" class="title">Orders</li>
+                <li data-tab="tab-2" tabindex="0" class="title">Payment method</li>
+                <li data-tab="tab-5" tabindex="0" class="title">Settings</li>
+            </ul>
+            <div class="block">
+
+                <div id="tab-1" class="content">
+                    <div class="div">
+  <div class="div-2">
+    <div class="column">
+      <div class="div-3">
+        <div class="div-4">
+          <div class="column-2">
+            <div class="div-5">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/09f4324a2d890006f63d07354fe46fb711fcc05106b03dd94e0ac4a146c2801e?"
+                class="img"
+              />
+            </div>
+          </div>
+          <div class="column-3">
+            <div class="div-6">
+              <form method="post" action="/updatechef/">
+                {% csrf_token %}
+              <div class="aty">
+                <label class="div-16">Name: </label>
+                <input class="div-7" type="text" value="{{chef.first_name}}" name="first_name"> <br>
+                <label class="div-16">Last name: </label>
+                <input class="div-7" type="text" value="{{chef.last_name}}" name="last_name">
+              </div>
+
+              <div class="div-8">
+                <div class="div-9">
+                  <div class="column">
+                    <div class="div-10">
+                      <div class="div-11">Email</div>
+                      <input class="div-12" type="email" value="{{chef.email}}" name="email">
+                      <div class="div-13">Address</div>
+                      <input class="div-12" type=text value="{{chef.address}}" name="address">
+                    </div>
+                  </div>
+                  <div class="column-4">
+                    <div class="div-15">
+                      <div class="div-16">Phone number</div>
+                      <div class="div-17">+ 7 777 123 77 77</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <input type="hidden" value="{{jurgen.id}}" name="jur">
+              <button class="div-18" type="submit">Change</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column-5">
+      <div class="div-19">
+        <div class="div-20">
+          <div class="div-21">
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/14d8b6da147e46b6d1b113519dcb0f03c93b0c1a2001cb657cad5ba1e697c119?"
+              class="img-2"
+            />
+            <div class="div-22">4.9</div>
+          </div>
+          <div class="div-23">321 reviews</div>
+        </div>
+        <div class="div-24">
+          <div class="div-25">
+            <img
+              loading="lazy"
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/e9ede7efc2b2fa1bf3a0b38f8a809b3e4a93d5c497a853ad919d3ee44a7f315d?"
+              class="img-3"
+            />
+            <div class="div-26">239</div>
+          </div>
+          <div class="div-27">Meals prepared</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                    <div class="inf">
+      <form method="post" action="/updatedetail/">
+          {% csrf_token %}
+      <div class="inf-2">About myself</div>
+
+        {% if detail.about %}
+          <input type="text" class="inf-5" value="{{detail.about}}" name="about">
+        {% else %}
+          <input type="text" class="inf-5" value="None" name="about">
+        {% endif%}
+
+      <div class="inf-4">Short about myself</div>
+        {% if detail.short %}
+          <input type="text" class="inf-5" value="{{detail.short}}" name="short">
+        {% else %}
+          <input type="text" class="inf-5" value="None" name="short">
+        {% endif%}
+      <div class="inf-6">What is my specialty?</div>
+
+        {% if detail.speciality %}
+          <input type="text" class="inf-7" value="{{detail.speciality}}" name="speciality">
+        {% else %}
+          <input type="text" class="inf-7" value="None" name="speciality">
+        {% endif%}
+      <div class="inf-8">Service offered</div>
+        {% if detail.service %}
+          <input type="text" class="inf-7" value="{{detail.service}}" name="service">
+        {% else %}
+          <input type="text" class="inf-7" value="None" name="service">
+        {% endif%}
+
+      <div class="inf-12">Availability</div>
+      <div class="inf-13">
+        {% if detail %}
+          {% if detail.is_active %}
+            <input type="checkbox" name="is_active" id="check1" checked>
+            <label for="check1">Ready to get orders</label>
+          {% else %}
+            <input type="checkbox" name="is_active" id="check2">
+            <label for="check2">Ready to get orders</label>
+          {% endif %}
+        {% else %}
+          <input type="checkbox" name="is_active" id="check3">
+          <label for="check3">Ready to get orders</label>
+        {% endif%}
+      </div>
+        <input type="hidden" value="{{jurgen.id}}" name="jur">
+      <button class="inf-17" type="submit">Change</button>
+      </form>
+    </div>
+
+                    <div class="lis">
+  <div class="lis-2">
+    <div class="lis-3">All my meals</div>
+    <img
+      loading="lazy"
+      src="https://cdn.builder.io/api/v1/image/assets/TEMP/7d82b95b7fcf22da2427fa99c53c1c391d2581b796b2578d98c053b023f35c91?"
+      class="ilis"
+    />
+  </div>
+  <form method="post" action="/addmealpage/">
+    {% csrf_token %}
+    <input type="hidden" value="{{jurgen.id}}" name="jur">
+    <button class="lis-4" type="submit">
+    <div class="lis-5">Add new</div>
+    <div class="lis-6">
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/121f5ede50b31c9dfbeadcaf34f7693d2cbed346fdb8af224e9f8ec3a01782a4?"
+        class="ilis-2"
+      />
+    </div>
+  </button>
+  </form>
+
+</div>
+
+                    <div class="tiz">
+      {% if meal %}
+        {% for q in meal %}
+    <div class="coltiz">
+      <div class="tiz-3">
+        <img
+          loading="lazy"
+          srcset="{{q.photo_link}}"
+          class="itiz"
+        />
+        <div class="tiz-4">
+          <div class="tiz-5">
+            <div class="tiz-6">
+              <div class="tiz-7">{{q.title}}</div>
+              <div class="tiz-8">{{q.category}}</div>
+            </div>
+            <div class="tiz-9">
+              1
+              <br />
+              serving
+            </div>
+          </div>
+          <div class="tiz-10">
+            <div class="tiz-11">{{q.price}} тг</div>
+            <div class="tiz-12">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8e3271d2a6ca039664fdf501f63851d26a386fef407a549be73f6ea889e45b8b?"
+                class="itiz-2"
+              />
+              <div class="tiz-13">4.9</div>
+            </div>
+          </div>
+          <form method="post" action="/changepage/">
+            {% csrf_token %}
+            <input type="hidden" value="{{jurgen.id}}" name="jur">
+            <input type="hidden" value="{{q.id}}" name="meal_id">
+            <button class="tiz-14" type="submit">Change</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+        {% endfor %}
+      {% endif %}
+</div>
+
+                </div>
+
+                <div id="tab-2" class="content">
+                    <div class="tab-2_wrapper">
+                        <div class="payment_title">Payment method</div>
+                        <div class="info_payment_card">
+                            <div class="card_number">
+                                <label for="card_number">Card number</label>
+                                <input type="text" name="card_number" maxlength="19" id="card_number" placeholder="0000 0000 0000 0000">
+                            </div>
+                            <div class="ex_date">
+                                <label for="ex_date">Expiration date</label>
+                                <input type="text" name="ex_date" maxlength="5" id="ex_date" placeholder="MM/YY">
+                            </div>
+                            <div class="cvc">
+                                <!-- <h2>CVC</h2>
+                                <p>CVC</p> -->
+                                <label for="cvc">CVC</label>
+                                <input type="text" name="cvc" maxlength="3" id="cvc" placeholder="CVC">
+                            </div>
+                        </div>
+                        <button class="add_card">
+                            Add new card
+                        </button>
+                    </div>
+                </div>
+
+                <div id="tab-3" class="content">
+                    <div class="review_block">
+                        <div class="review_title">
+                            What our customer says
+                        </div>
+                        <div class="review_card_block">
+                            <div class="review_card">
+                                <h2>Title of meal</h2>
+                                <p>HomeEat has been a game-changer for me. I can now share my passion for cooking with others and earn money from it. It's a win-win!</p>
+                                <div class="review_card_footer">
+                                    <img src="{% static 'img/review_card_footer_img.png' %}">
+                                    <p>Isabella Chavez</p>
+                                </div>
+                            </div>
+
+                            <div class="review_card">
+                                <h2>Title of meal</h2>
+                                <p>HomeEat has been a game-changer for me. I can now share my passion for cooking with others and earn money from it. It's a win-win!</p>
+                                <div class="review_card_footer">
+                                    <img src="{% static 'img/review_card_footer_img.png' %}">
+                                    <p>Isabella Chavez</p>
+                                </div>
+                             </div>
+
+                            <div class="review_card">
+                                <h2>Title of meal</h2>
+                                <p>HomeEat has been a game-changer for me. I can now share my passion for cooking with others and earn money from it. It's a win-win!</p>
+                                <div class="review_card_footer">
+                                    <img src="{% static 'img/review_card_footer_img.png' %}">
+                                    <p>Isabella Chavez</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-4" class="content">
+                    <div class="filter_tab_4">
+                        <div class="category_tab4_block">
+                            <input type="radio" name="category" id="now" checked="checked">
+                            <label for="now">Now</label>
+
+                            <input type="radio" name="category" id="past">
+                            <label for="past">Past</label>
+                        </div>
+                    </div>
+                        <!--
+                         q - order
+                         w - customer
+                         e - meal
+                         -->
+                    {% if order %}
+                        {% for q in order %}
+                            {% for w in customer %}
+                                {% if q.customer_id == w.id %}
+                                    {% for e in meal %}
+                                        {% if e.id == q.meal_id %}
+                                            <div class="order_block_wrapper">
+                                                <div class="orders_block">
+                                                    <div class="info_order">
+                                                        <p id="number_orders">#{{q.id}}</p>
+                                                        <p id="name_client">Vahabov Matkarim</p>
+                                                    </div>
+                                                    <div class="info_meal_orders">
+                                                        <div id="title_order">
+                                                            <img src="{{e.photo_link}}">
+                                                            <div>
+                                                                <p id="title_meal">{{e.title}}</p>
+                                                                <p id="price_meal">{{e.price}} tg</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="total_price">
+                                                            <h3>Total: </h3>
+                                                            <p id="total_price_orders">{{e.price}} tg</p>
+                                                        </div>
+                                                        <div class="comment_order">Special requests, allergies, dietary restrictions written by the client </div>
+                                                        <div class="deadline_orders">
+                                                            <p>Должен быть готов до</p>
+                                                            <div id="date_order">09.06.2024</div>
+                                                            <div id="time_order">14:00</div>
+                                                        </div>
+                                                        <div class="status_orders">
+                                                            <p>Status</p>
+                                                            <div id="status_order">Confirmed</div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="info_about_client">
+                                                    <h2>Info about client</h2>
+                                                    <div class="info_client">
+                                                        <div id="client_name">
+                                                            <p>Client</p>
+                                                            <p>Vahabov Matkarim</p>
+                                                        </div>
+                                                        <div id="client_number">
+                                                            <p>Phone number</p>
+                                                            <p>87472383190</p>
+                                                        </div>
+                                                        <div id="client_address">
+                                                            <p>Address</p>
+                                                            <p>Medeu 4</p>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="order_status">
+                                                        <!-- <img src="img/navbar_burger.svg" class="user_pic" onclick="toggleMenu()"> -->
+                                                        <div class="status_button" onclick="toggleMenuu()" >Status of order</div>
+                                                        <div class="sub_menu_wrap1" id="subMenu1">
+                                                            <div class="sub_menu1">
+
+                                                                <button type="submit" class="accepted" >Accepted</button>
+                                                                <button type="submit" class="preparing" >Preparing</button>
+                                                                <button type="submit" class="on_the_way" >On the way</button>
+                                                                <button type="submit" class="delivered" >Delivered</button>
+
+                                                                <!-- <input type="radio" class="state_status" name="category_status" id="accepted" checked="checked" >
+                                                                <label for="accepted">Accepted</label>
+
+                                                                <input type="radio" class="state_status" name="category_status" id="preparing">
+                                                                <label for="preparing">Preparing</label>
+
+                                                                <input type="radio" class="state_status" name="category_status" id="on_the_way">
+                                                                <label for="on_the_way">On the way</label>
+
+                                                                <input type="radio" class="state_status" name="category_status" id="delivered">
+                                                                <label for="delivered">Delivered</label> -->
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    
+
+                </div>
+
+            </div>
+        </div>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="./js/tabs.js"></script>
+    <script src="./js/index.js"></script>
+    <script type="text/javascript">
+        let subMenu1 = document.getElementById("subMenu1");
+
+        function toggleMenuu() {
+            subMenu1.classList.toggle("open_menu1");
+        }
+
+        ;
+
+
+    </script>
+
+    <script type="text/javascript">
+        let subMenu = document.getElementById("subMenu");
+        let closeIcon = document.querySelector(".close_icon");
+
+        function toggleMenu() {
+            subMenu.classList.toggle("open_menu");
+        }
+
+        closeIcon.addEventListener("click", function() {
+        subMenu.classList.remove("open_menu");
+        });
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+    var expiryDateInput = document.getElementById('ex_date');
+
+    expiryDateInput.addEventListener('input', function() {
+        var value = expiryDateInput.value;
+        value = value.replace(/\D/g, ''); // Удаляем все нецифровые символы
+
+        // Отделяем месяц и год
+        var month = value.substring(0, 2);
+        var year = value.substring(2, 4);
+
+        // Если пользователь ввел два символа месяца и отсутствует символ '/', добавляем его
+        if (value.length === 2 && value.indexOf('/') === -1) {
+            expiryDateInput.value = month + '/';
+        }
+
+        // Если пользователь ввел три символа (MM/) и отсутствует символ '/', добавляем его
+        if (value.length === 3 && value.charAt(2) !== '/') {
+            expiryDateInput.value = value.substring(0, 2) + '/' + value.charAt(2);
+        }
+
+        // Ограничиваем год двумя символами
+        if (value.length >= 4) {
+            year = value.substring(2, 4);
+        }
+
+        // Форматируем значение обратно в формат MM/YY
+        expiryDateInput.value = month + (value.length >= 3 ? '/' : '') + year;
+    });
+});
+    </script>
+
+
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+    var cardNumberInput = document.getElementById('card_number');
+
+    cardNumberInput.addEventListener('input', function() {
+        var value = cardNumberInput.value;
+        value = value.replace(/\D/g, ''); // Удаляем все нецифровые символы
+
+        // Удаляем пробелы, если они есть
+        value = value.replace(/\s/g, '');
+
+        // Форматируем номер карты, добавляя пробелы после каждых четырех цифр
+        var formattedValue = '';
+        for (var i = 0; i < value.length; i++) {
+            if (i > 0 && i % 4 === 0) {
+                formattedValue += ' ';
+            }
+            formattedValue += value.charAt(i);
+        }
+
+        // Обновляем значение в поле ввода
+        cardNumberInput.value = formattedValue;
+    });
+});
+
+
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        tabs();
+    });
+
+    const tabs = () => {
+
+        function bindTabs(titleClass, contentClass, activeClass, startTitleClass, startContentClass) {
+
+            const title = document.querySelectorAll(titleClass);
+            const content = document.querySelectorAll(contentClass);
+            const startTitle = document.querySelector(startTitleClass);
+            const startContent = document.querySelector(startContentClass);
+
+            // Обработчик нажатия клавиш на табах
+            title.forEach((item, index) => {
+                item.addEventListener('keydown', event => {
+                    if (event.key === 'ArrowLeft') {
+                        // Если нажата клавиша влево, выбираем предыдущий таб
+                        const prevIndex = (index - 1 + title.length) % title.length;
+                        title[prevIndex].focus();
+                        event.preventDefault();
+                    } else if (event.key === 'ArrowRight') {
+                        // Если нажата клавиша вправо, выбираем следующий таб
+                        const nextIndex = (index + 1) % title.length;
+                        title[nextIndex].focus();
+                        event.preventDefault();
+                    } else if (event.key === 'Enter' || event.key === ' ') {
+                        // Если нажата клавиша Enter или пробел, активируем таб
+                        item.click();
+                        event.preventDefault();
+                    }
+                });
+            });
+
+            // Обработчик кликов на табах
+            title.forEach(item => item.addEventListener('click', () => {
+                if (item.classList.contains(activeClass)) {
+                    return;
+                }
+
+                title.forEach(element => {
+                    element.classList.remove(activeClass);
+                });
+
+                item.classList.add(activeClass);
+
+                content.forEach(element => {
+                    element.classList.remove(activeClass);
+                });
+
+                const activeContent = document.querySelector('#' + item.dataset.tab);
+                activeContent.classList.add(activeClass);
+            }));
+
+            // При первой загрузке страницы, активны эти табы
+            startTitle.classList.add(activeClass);
+            startContent.classList.add(activeClass);
+        }
+
+        // Табы со знаменитостями
+        bindTabs('.title', '.content', 'active', '[data-tab="tab-1"]', '#tab-1');
+    }
+
+
+
+    </script>
+
+    </body>
+</html>

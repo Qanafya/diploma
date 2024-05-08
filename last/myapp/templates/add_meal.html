@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/add_meal.css' %}">
+</head>
+<body>
+{% if meal %}
+  <form method="post" action="/editmeal/">
+    {% csrf_token %}
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" value="{{meal.title}}"><br>
+
+    {% if meal.category == "Good value" %}
+      <input type="radio" name="category" value="Good value" id="1" checked>
+    {% else %}
+      <input type="radio" name="category" value="Good value" id="1">
+    {% endif %}
+      <label for="1">Good value</label>
+
+    {% if meal.category == "Kid friendly" %}
+      <input type="radio" name="category" value="Kid friendly" id="2" checked>
+    {% else %}
+      <input type="radio" name="category" value="Kid friendly" id="2">
+    {% endif %}
+      <label for="2">Kid friendly</label>
+
+    {% if meal.category == "Taste" %}
+      <input type="radio" name="category" value="Taste" id="3" checked>
+    {% else %}
+      <input type="radio" name="category" value="Taste" id="3">
+    {% endif %}
+      <label for="3">Taste</label>
+
+    {% if meal.category == "Cheap" %}
+      <input type="radio" name="category" value="Cheap" id="4" checked>
+    {% else %}
+      <input type="radio" name="category" value="Cheap" id="4">
+    {% endif %}
+      <label for="4">Cheap</label>
+
+    {% if meal.category == "Quality" %}
+      <input type="radio" name="category" value="Quality" id="5" checked>
+    {% else %}
+      <input type="radio" name="category" value="Quality" id="5">
+    {% endif %}
+      <label for="5">Quality</label><br>
+
+
+    <label>Price</label>
+    <input type="number" name="price" value="{{meal.price}}"><br>
+    <label>Description</label>
+    <input type="text" name="desc" value="{{meal.desc}}"><br>
+
+      <label>Link to photo</label>
+      <input type="text" name="photo_link" value="{{meal.photo_link}}"><br>
+      <label>Write ingredients</label>
+      <input type="text" name="ingredient" value="{{meal.ingredient}}">
+      <input type="hidden" name="jur" value="{{jurgen.id}}"><br>
+    <button type="submit">Go</button><br>
+  </form>
+    <form method="post" action="/deletemeal/">
+      {% csrf_token %}
+      <input type="hidden" value="{{jurgen.id}}" name="jur">
+      <input type="hidden" value="{{meal.id}}" name="meal_id">
+      <button type="submit">Delete</button>
+    </form>
+{% else %}
+  <form method="post" action="/addmeal/">
+    {% csrf_token %}
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title"><br>
+      <input type="radio" name="category" value="Good value" id="1">
+      <label for="1">Good value</label>
+      <input type="radio" name="category" value="Kid friendly" id="2">
+      <label for="2">Kid friendly</label>
+      <input type="radio" name="category" value="Taste" id="3">
+      <label for="3">Taste</label>
+      <input type="radio" name="category" value="Cheap" id="4">
+      <label for="4">Cheap</label>
+      <input type="radio" name="category" value="Quality" id="5">
+      <label for="5">Quality</label><br>
+
+    <label>Price</label>
+    <input type="number" name="price"><br>
+    <label>Description</label>
+    <input type="text" name="desc"><br>
+
+      <label>Link to photo</label>
+      <input type="text" name="photo_link"><br>
+      <label>Write ingredients</label>
+      <input type="text" name="ingredient">
+      <input type="hidden" name="jur" value="{{jurgen.id}}"><br>
+    <button type="submit">Go</button><br>
+  </form>
+{% endif %}
+
+</body>
+</html>

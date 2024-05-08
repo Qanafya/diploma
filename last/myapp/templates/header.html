@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+</head>
+<body>
+
+<header class="header">
+            <div class="container">
+                <div class="header_wrapper">
+                    <div class="header_navbar">
+                        <div class="nav">
+
+                            <img src="{% static 'img/navbar_burger.svg' %}" class="user_pic" onclick="toggleMenu()">
+                            <div class="sub_menu_wrap" id="subMenu">
+                                <div class="sub_menu">
+                                    <div class="user_info">
+                                        <img class="close_icon" src="{% static 'img/close_icon.svg' %}">
+                                        <img src="{% static 'img/homemade.svg' %}">
+                                    </div>
+                                    <hr>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/profile_icon.svg' %}">
+                                        <p>Profile</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img class="ch_icon" src="{% static 'img/chef_icon.svg' %}">
+                                        <p>Our Chefs</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/menu_icon.svg' %}">
+                                        <p>Our Menu</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/orders_icon.svg' %}">
+                                        <p>My Orders</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/message_icon.svg' %}">
+                                        <p>Messages</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/like_icon.svg' %}">
+                                        <p>Following</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/help_icon.svg' %}">
+                                        <p>Help Center</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/become_chef_icon.svg' %}">
+                                        <p>Become a chef</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="logo">
+                            <img src="{% static 'img/homemade.svg' %}">
+                        </a>
+                    </div>
+
+                    <div class="search_location">
+                        <div class="location_icon_con">
+                            <img src="{% static 'img/find.svg' %}">
+                        </div>
+
+                        <input class="input_location" type="search" placeholder="Search foods and chefs">
+
+                    </div>
+
+
+                    <a class="cart_button" href="#">
+                        <img src="{% static 'img/cart_button_img.svg' %}">
+                        <div>
+                            cart(0)
+                        </div>
+                    </a>
+
+
+
+                </div>
+            </div>
+        </header>
+
+<br>
+<header class="header">
+            <div class="container">
+                <div class="header_wrapper">
+                    <div class="header_navbar">
+                        <div class="nav">
+
+                            <img src="{% static 'img/navbar_burger.svg' %}" class="user_pic" onclick="toggleMenu1()">
+                            <div class="sub_menu_wrap" id="subMenu1">
+                                <div class="sub_menu">
+                                    <div class="user_info">
+                                        <img class="close_icon" src="{% static 'img/close_icon.svg' %}">
+                                        <img src="{% static 'img/homemade.svg' %}">
+                                    </div>
+                                    <hr>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/profile_icon.svg' %}">
+                                        <p>Profile</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img class="ch_icon" src="{% static 'img/chef_icon.svg' %}">
+                                        <p>Our Chefs</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/menu_icon.svg' %}">
+                                        <p>Our Menu</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/orders_icon.svg' %}">
+                                        <p>My Orders</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/message_icon.svg' %}">
+                                        <p>Messages</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/like_icon.svg' %}">
+                                        <p>Following</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/help_icon.svg' %}">
+                                        <p>Help Center</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/become_chef_icon.svg' %}">
+                                        <p>Become a chef</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="logo">
+                            <img src="{% static 'img/homemade.svg' %}">
+                        </a>
+                    </div>
+
+                    <div class="search_location">
+                        <div class="location_icon_con">
+                            <img src="{% static 'img/find.svg' %}">
+                        </div>
+
+                        <input class="input_location" type="search" placeholder="Search foods and chefs">
+
+                    </div>
+
+                    <div>
+                        <a class="login_button" href="#">
+                            <div>
+                                Log in
+                            </div>
+                        </a>
+                        <a class="signup_button" href="#">
+                            <div>
+                                Sign up
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </header>
+
+
+<script src="./js/tabs.js"></script>
+<script src="./js/index.js"></script>
+<script type="text/javascript">
+        let subMenu = document.getElementById("subMenu");
+        let closeIcon = document.querySelector(".close_icon");
+
+        let subMenu1 = document.getElementById("subMenu1");
+
+        function toggleMenu() {
+            subMenu.classList.toggle("open_menu");
+        }
+
+        function toggleMenu1() {
+            subMenu1.classList.toggle("open_menu");
+        }
+
+        closeIcon.addEventListener("click", function() {
+        subMenu.classList.remove("open_menu");
+        });
+
+        closeIcon.addEventListener("click", function() {
+        subMenu1.classList.remove("open_menu");
+        });
+</script>
+</body>
+</html>

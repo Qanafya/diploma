@@ -1,0 +1,259 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>meal_new</title>
+        <link rel="stylesheet" href="{% static 'css/meal_new.css' %}">
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="header_wrapper">
+                    <div class="header_navbar">
+                        <div class="nav"> 
+
+                            <img src="{% static 'img/navbar_burger.svg' %}" class="user_pic" onclick="toggleMenu()">
+                            <div class="sub_menu_wrap" id="subMenu">
+                                <div class="sub_menu">
+                                    <div class="user_info">
+                                        <img class="close_icon" src="{% static 'img/close_icon.svg' %}">
+                                        <img src="{% static 'img/homemade.svg' %}">
+                                    </div>
+                                    <hr>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/profile_icon.svg' %}">
+                                        <p>Profile</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img class="ch_icon" src="{% static 'img/chef_icon.svg' %}">
+                                        <p>Our Chefs</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/menu_icon.svg' %}">
+                                        <p>Our Menu</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/orders_icon.svg' %}">
+                                        <p>My Orders</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/message_icon.svg' %}">
+                                        <p>Messages</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/like_icon.svg' %}">
+                                        <p>Following</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/help_icon.svg' %}">
+                                        <p>Help Center</p>
+                                        <span>></span>
+                                    </a>
+                                    <a href="#" class="sub_menu_link">
+                                        <img src="{% static 'img/become_chef_icon.svg' %}">
+                                        <p>Become a chef</p>
+                                        <span>></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="logo">
+                            <img src="{% static 'img/homemade.svg' %}">
+                        </a>
+                    </div>
+                
+                    <div class="search_location">
+                        <div class="location_icon_con">
+                            <img src="{% static 'img/find.svg' %}">
+                        </div>
+
+                        <input class="input_location" type="search" placeholder="Search foods and chefs">
+                            
+                    </div>
+
+
+                    <a class="cart_button" href="#">
+                        <img src="{% static 'img/cart_button_img.svg' %}">
+                        <div>
+                            cart(0)  
+                        </div>
+                    </a>
+                    
+
+
+                </div>
+            </div>
+        </header>
+
+
+
+        {% if meal %}
+                <form method="post" action="/addmeal/">
+                    {% csrf_token %}
+                <div class="title_of_meal">
+                    <h3>Title of the meal</h3>
+                    <input type="text" name="title" value="{{meal.title}}">
+                </div>
+                <hr>
+                    <div class="pick_category">
+                        <h3>Category</h3>
+                        <div class="category_block">
+                            {% if meal.category == "Kazakh cuisines" %}
+                            <input type="radio" name="category" value="Kazakh cuisines" id="kazakh" checked>
+                            {% else %}
+                            <input type="radio" name="category" value="Kazakh cuisines" id="kazakh">
+                            {% endif %}
+                            <label for="kazakh">Kazakh cuisines</label>
+
+                            {% if meal.category == "Uzbek cuisines" %}
+                            <input type="radio" name="category" value="Uzbek cuisines" id="uzbek" checked>
+                            {% else %}
+                            <input type="radio" name="category" value="Uzbek cuisines" id="uzbek">
+                            {% endif %}
+
+                            <label for="uzbek">Uzbek cuisines</label>
+
+                            {% if meal.category == "Uyghur cuisines" %}
+                            <input type="radio" name="category" value="Uyghur cuisines" id="uyghur" checked>
+                            {% else %}
+                            <input type="radio" name="category" value="Uyghur cuisines" id="uyghur">
+                            {% endif%}
+                            <label for="uyghur">Uyghur cuisines</label>
+
+                            {% if meal.category == "Korean cuisines" %}
+                            <input type="radio" name="category" value="Korean cuisines" id="korean" checked>
+                            {% else %}
+                            <input type="radio" name="category" value="Korean cuisines" id="korean">
+                            {% endif %}
+                            <label for="korean">Korean cuisines</label>
+
+                            {% if meal.category == "Bakery" %}
+                            <input type="radio" name="category" value="Bakery" id="bakery" checked>
+                            {% else %}
+                            <input type="radio" name="category" value="Bakery" id="bakery">
+                            {% endif %}
+                            <label for="bakery">Bakery</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="price_food">
+                        <h3>How much tenge for 1 person</h3>
+                        <input type="text" name="price" value="{{meal.price}}">
+                    </div>
+                    <hr>
+                    <div class="description">
+                        <h3>Description</h3>
+                        <!-- <input type="text" name="description"> -->
+                        <input type="text" name="desc" value="{{meal.desc}}" id="descriptionTextarea" maxlength="500">
+                    </div>
+                    <hr>
+                    <div class="upload_image">
+                        <h3>Upload an image(in format jpg,png)</h3>
+                        <input type="text" name="photo_link" value="{{meal.photo_link}}" id="upload_image">
+                    </div>
+                    <hr>
+                    <div class="ingredient">
+                        <h3>Write an ingredient and gram </h3>
+                        <input type="text" name="ingredient" value="{{meal.ingredient}}" id="ingredientTextarea" maxlength="500">
+                    </div>
+                    <hr>
+                    <input type="hidden" name="jur" value="{{jurgen.id}}"><br>
+                    <input type="hidden" name="meal_id" value="{{meal.id}}">
+                    <button type="submit" class="save_button">Save meal</button>
+                </form>
+                <form method="post" action="/deletemeal/">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{jurgen.id}}" name="jur">
+                    <input type="hidden" value="{{meal.id}}" name="meal_id">
+                    <button type="submit" class="delete_button">Delete</button>
+                </form>
+        {% else %}
+                <form method="post" action="/addmeal/">
+            {% csrf_token %}
+            <div class="title_of_meal">
+                <h3>Title of the meal</h3>
+                <input type="text" name="title">
+            </div>
+            <hr>
+            <div class="pick_category">
+                <h3>Category</h3>
+                <div class="category_block">
+                    <input type="radio" name="category" value="Kazakh cuisines" id="kazakh">
+                    <label for="kazakh">Kazakh cuisines</label>
+
+                    <input type="radio" name="category" value="Uzbek cuisines" id="uzbek">
+                    <label for="uzbek">Uzbek cuisines</label>
+
+                    <input type="radio" name="category" value="Uyghur cuisines" id="uyghur">
+                    <label for="uyghur">Uyghur cuisines</label>
+
+                    <input type="radio" name="category" value="Korean cuisines" id="korean">
+                    <label for="korean">Korean cuisines</label>
+
+                    <input type="radio" name="category" value="Bakery" id="bakery">
+                    <label for="bakery">Bakery</label>
+                </div>
+            </div>
+            <hr>
+            <div class="price_food">
+                <h3>How much tenge for 1 person</h3>
+                <input type="text" name="price">
+            </div>
+            <hr>
+            <div class="description">
+                <h3>Description</h3>
+                <!-- <input type="text" name="description"> -->
+                <input type="text" name="desc" id="descriptionTextarea" maxlength="500">
+            </div>
+            <hr>
+            <div class="upload_image">
+                <h3>Upload an image(in format jpg,png)</h3>
+                <input type="text" name="photo_link" id="upload_image">
+            </div>
+            <hr>
+            <div class="ingredient">
+                <h3>Write an ingredient and gram </h3>
+                <input type="text" name="ingredient" id="ingredientTextarea" maxlength="500">
+            </div>
+            <hr>
+            <input type="hidden" name="jur" value="{{jurgen.id}}"><br>
+            <button type="submit" class="save_button">Add new meal</button>
+        </form>
+        {% endif %}
+
+
+
+
+
+
+
+
+
+    <script src="./js/tabs.js"></script>
+    <script src="./js/index.js"></script>
+    <script type="text/javascript">
+        let subMenu = document.getElementById("subMenu");
+        let closeIcon = document.querySelector(".close_icon");
+
+        function toggleMenu() {
+            subMenu.classList.toggle("open_menu");
+        }
+
+        closeIcon.addEventListener("click", function() {
+        subMenu.classList.remove("open_menu");
+        });
+
+
+    </script>
+
+
+    </body>
+</html>

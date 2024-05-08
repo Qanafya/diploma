@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+
+<div class="div">
+  <img
+    loading="lazy"
+    srcset="{% static 'img/bg login.png' %}"
+    class="img"
+  />
+  <div class="div-2">
+    <div class="div-3">
+      <span style="font-weight: 400; font-size: 28px; line-height: 42px">
+        Home
+      </span>
+      <span
+        style="
+          font-family: Dancing Script, -apple-system, Roboto, Helvetica,
+            sans-serif;
+          font-weight: 700;
+          font-size: 48px;
+          line-height: 58px;
+          color: rgba(253, 143, 44, 1);
+        "
+      >
+        Made
+      </span>
+    </div>
+    <div class="div-4">
+      <div class="div-5">Log in</div>
+      <div class="div-6">Sign up</div>
+    </div>
+  </div>
+  <div class="div-7">
+    <div class="div-8">Log in</div>
+    <div class="div-9">To get started, you need to sign in here.</div>
+    <div class="div-10">Email address / phone number</div>
+    <datalist id="rols">
+        <option value="Chef">
+        <option value="Customer">
+    </datalist>
+    <form id="LoginForm" method="post" action="/logincustomer/">
+      {% csrf_token %}
+      <div class="div-11">
+        <input type="text" class="username" name="username" placeholder="Username">
+      </div>
+
+      <div class="div-12">
+        <div class="div-13">Your password</div>
+        
+      </div>
+      <div class="div-16">
+        <input type="password" class="password" name="password" placeholder="********">
+      </div>
+      <div class="div-12">
+        <input type="checkbox" id="checkbox">
+        <div class="div-13"><label for="checkbox">Are you our chef?</label></div>
+      </div>
+      <input type="submit" value="Log in" class="div-17">
+      <div class="div-18">Forget password?</div>
+    </form>
+
+  </div>
+</div>
+
+<script>
+document.getElementById("LoginForm").addEventListener("submit", function(event) {
+    var checkbox = document.getElementById("checkbox");
+
+    if (checkbox.checked) {
+        this.action = "/loginchef/";
+    } else {
+        // If the checkbox is not checked, redirect to the second URL
+        this.action = "/logincustomer/";
+    }
+});
+</script>
+
+</body>
+</html>
