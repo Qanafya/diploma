@@ -135,14 +135,14 @@ def updatechef(request):
             meal = Meal.objects.filter(chef_id=jurgen.user_id)
             if ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
                 detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-                return render(request, 'chef_profile_changing.html',
+                return render(request, 'chef_profile.html',
                               {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
             else:
-                return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal})
+                return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal})
         elif ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
-        return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
+        return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef})
 
 
 def updatedetail(request):
@@ -168,23 +168,23 @@ def updatedetail(request):
             detail.save()
             if Meal.objects.filter(chef_id=jurgen.user_id).exists():
                 meal = Meal.objects.filter(chef_id=jurgen.user_id)
-                return render(request, 'chef_profile_changing.html',
+                return render(request, 'chef_profile.html',
                               {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
             else:
-                return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
+                return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
         elif Meal.objects.filter(chef_id=jurgen.user_id).exists():
             meal = Meal.objects.filter(chef_id=jurgen.user_id)
             check = is_active == 'on'
             form = ChefDetail(chef_id=jurgen.user_id, about=about, short=short, speciality=speciality, is_active=check)
             form.save()
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
         else:
             check = is_active == 'on'
             form = ChefDetail(chef_id=jurgen.user_id, about=about, short=short, speciality=speciality, is_active=check)
             form.save()
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
 
 
 
@@ -219,13 +219,13 @@ def addmeal(request):
         meal = Meal.objects.filter(chef_id=jurgen.user_id)
         if ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
         else:
-            return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal})
     elif ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
         detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-        return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
-    return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef})
+        return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
+    return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef})
 
 
 def addmealpage(request):
@@ -245,13 +245,13 @@ def deletemeal(request):
         meal = Meal.objects.filter(chef_id=jurgen.user_id)
         if ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
         else:
-            return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal})
     elif ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
         detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-        return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
-    return render(request, 'chef_profile_changing.html', {'jurgen': jurgen, 'chef': chef})
+        return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
+    return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef})
 
 def changepage(request):
     jurgen_id = request.POST.get('jur')
@@ -323,7 +323,7 @@ def edit_profile_chef(request):
         if jur.role == 'chef':
             detail = ChefDetail.objects.get(id=chef_id)
             chef = Chef.objects.get(id=chef_id)
-            return render(request, 'chef_profile_changing.html', {'jur': jur, 'detail': detail, 'chef': chef})
+            return render(request, 'chef_profile.html', {'jur': jur, 'detail': detail, 'chef': chef})
     else:
         return redirect('/login/')
 
