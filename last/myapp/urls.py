@@ -20,7 +20,7 @@ urlpatterns = [
     path('order/', views.order),
     path('chefprof/', views.chefprof),
     path('vieworder/', views.vieworder),
-
+    path('', views.main_page),
 
     path('header/', views.header),
     path('menu/', views.menu),
