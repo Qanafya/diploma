@@ -65,9 +65,20 @@
                             </div>
                         </div>
 
-                        <a href="#" class="logo">
-                            <img src="{% static 'img/homemade.svg' %}">
-                        </a>
+                        {% if jurgen %}
+                            <form id="myForm" method="post" action="/menu/">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{jurgen.id}}" name="jur">
+                                <input type="submit" style="display: none;">
+                            </form>
+                            <a href="#" class="logo" id="submitButton">
+                                <img src="{% static 'img/homemade.svg' %}">
+                            </a>
+                        {% else %}
+                            <a href="/menu/" class="logo">
+                                <img src="{% static 'img/homemade.svg' %}">
+                            </a>
+                        {% endif %}
                     </div>
                 
                     <div class="search_location">
@@ -254,6 +265,13 @@
 
     </script>
 
+<script>
+  document.getElementById("submitButton").addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the default behavior of the anchor tag
 
+      // Submit the form programmatically
+      document.getElementById("myForm").submit();
+  });
+</script>
     </body>
 </html>

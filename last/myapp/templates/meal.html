@@ -72,9 +72,20 @@
                             
                         </div>
 
-                        <a href="#" class="logo">
-                            <img src="{% static 'img/homemade.svg' %}">
-                        </a>
+                        {% if jurgen %}
+                            <form id="myForm" method="post" action="/menu/">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{jurgen.id}}" name="jur">
+                                <input type="submit" style="display: none;">
+                            </form>
+                            <a href="#" class="logo" id="submitButton">
+                                <img src="{% static 'img/homemade.svg' %}">
+                            </a>
+                        {% else %}
+                            <a href="/menu/" class="logo">
+                                <img src="{% static 'img/homemade.svg' %}">
+                            </a>
+                        {% endif %}
                     </div>
                 
                     <div class="search_location">
@@ -107,7 +118,7 @@
                 <h3>{{meal.price}} tg / for 1 person</h3>
                 <p> {{meal.desc}}</p>
                 {% if jurgen and jurgen.role == "customer" %}
-                <form method="post" action="/order/">
+                <form method="post" action="/to_pay/">
                     {% csrf_token %}
                     <input type="hidden" value="{{jurgen.id}}" name="jur">
                     <input type="hidden" value="{{meal.id}}" name="meal_id">

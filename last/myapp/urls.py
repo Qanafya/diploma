@@ -17,10 +17,12 @@ urlpatterns = [
     path('deletemeal/', views.deletemeal),
     path('changepage/', views.changepage),
     path('meal/<int:id>/', views.meal),
+    path('meal/<int:id>/<int:id2>', views.meals),
     path('order/', views.order),
     path('chefprof/', views.chefprof),
     path('vieworder/', views.vieworder),
     path('', views.main_page),
+    path('meals/', views.meals),
 
     path('header/', views.header),
     path('menu/', views.menu),
@@ -33,4 +35,5 @@ urlpatterns = [
     path('old/', views.old),
     path('phone/', views.phone),
     path('cart/', views.cart),
+    path('to_pay/', views.to_pay),
 ]

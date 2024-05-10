@@ -34,6 +34,7 @@ def loginchef(request):
         password = request.POST['password']
         data = Chef.objects.filter(username=username)
         role = "chef"
+        customer = Customer.objects.all()
         for q in data:
             if q.password == password:
                 user = Chef.objects.get(username=username)
@@ -47,20 +48,21 @@ def loginchef(request):
                     form.save()
                 jurgen = Jur.objects.get(user_id=user.id, role='chef')
                 chef = Chef.objects.get(id=jurgen.user_id)
+                order = Order.objects.all()
                 if Meal.objects.filter(chef_id=jurgen.user_id).exists():
                     meal = Meal.objects.filter(chef_id=jurgen.user_id)
                     if ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
                         detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
                         return render(request, 'chef_profile.html',                                           #asdasd
-                                      {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
+                                      {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal, 'order': order, 'customer': customer})
                     else:
                         return render(request, 'chef_profile.html',
-                                      {'jurgen': jurgen, 'chef': chef, 'meal': meal})
+                                      {'jurgen': jurgen, 'chef': chef, 'meal': meal, 'order': order, 'customer': customer})
                 elif ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
                     detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
                     return render(request, 'chef_profile.html',
-                                  {'jurgen': jurgen, 'chef': chef, 'detail': detail})
-                return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef})
+                                  {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'order': order, 'customer': customer})
+                return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'order': order, 'customer': customer})
     return redirect('/')
 
 
@@ -131,18 +133,19 @@ def updatechef(request):
         chef.email = email
         chef.address = address
         chef.save()
+        order = Order.objects.all()
         if Meal.objects.filter(chef_id=jurgen.user_id).exists():
             meal = Meal.objects.filter(chef_id=jurgen.user_id)
             if ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
                 detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
                 return render(request, 'chef_profile.html',
-                              {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
+                              {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal, 'order': order})
             else:
-                return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal})
+                return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal, 'order': order})
         elif ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
-        return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'order': order})
+        return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'order': order})
 
 
 def updatedetail(request):
@@ -166,25 +169,26 @@ def updatedetail(request):
             detail.service = service
             detail.is_active = is_active == 'on'
             detail.save()
+            order = Order.objects.all()
             if Meal.objects.filter(chef_id=jurgen.user_id).exists():
                 meal = Meal.objects.filter(chef_id=jurgen.user_id)
                 return render(request, 'chef_profile.html',
-                              {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
+                              {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal, 'order': order})
             else:
-                return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
+                return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'order': order})
         elif Meal.objects.filter(chef_id=jurgen.user_id).exists():
             meal = Meal.objects.filter(chef_id=jurgen.user_id)
             check = is_active == 'on'
             form = ChefDetail(chef_id=jurgen.user_id, about=about, short=short, speciality=speciality, is_active=check)
             form.save()
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal, 'order': order})
         else:
             check = is_active == 'on'
             form = ChefDetail(chef_id=jurgen.user_id, about=about, short=short, speciality=speciality, is_active=check)
             form.save()
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'order': order})
 
 
 
@@ -202,6 +206,7 @@ def addmeal(request):
     photo_link = request.POST.get('photo_link')
     ingredient = request.POST.get('ingredient')
     meal_id = request.POST.get('meal_id')
+    order = Order.objects.all()
     if Meal.objects.filter(id=meal_id).exists():
         meals = Meal.objects.get(id=meal_id)
         meals.title = title
@@ -219,13 +224,13 @@ def addmeal(request):
         meal = Meal.objects.filter(chef_id=jurgen.user_id)
         if ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal, 'order': order})
         else:
-            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal, 'order': order})
     elif ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
         detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-        return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
-    return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef})
+        return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'order': order})
+    return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'order': order})
 
 
 def addmealpage(request):
@@ -240,18 +245,18 @@ def deletemeal(request):
     meal = Meal.objects.get(id=meal_id)
     meal.delete()
     chef = Chef.objects.get(id=jurgen.user_id)
-
+    order = Order.objects.all()
     if Meal.objects.filter(chef_id=jurgen.user_id).exists():
         meal = Meal.objects.filter(chef_id=jurgen.user_id)
         if ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
             detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'meal': meal, 'order': order})
         else:
-            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal})
+            return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'meal': meal, 'order': order})
     elif ChefDetail.objects.filter(chef_id=jurgen.user_id).exists():
         detail = ChefDetail.objects.get(chef_id=jurgen.user_id)
-        return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail})
-    return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef})
+        return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'detail': detail, 'order': order})
+    return render(request, 'chef_profile.html', {'jurgen': jurgen, 'chef': chef, 'order': order})
 
 def changepage(request):
     jurgen_id = request.POST.get('jur')
@@ -268,6 +273,13 @@ def our_menu(request):
 
 def header(request):
     return render(request, 'header.html')
+
+def to_pay(request):
+    jur = request.POST.get('jur')
+    meal_id = request.POST.get('meal_id')
+    jurgen = Jur.objects.get(id=jur)
+    meal = Meal.objects.get(id=meal_id)
+    return render(request, 'pay_order.html', {'meal': meal, 'jurgen': jurgen})
 
 def meal(request, id):
     meal = Meal.objects.get(id=id)
@@ -320,10 +332,11 @@ def edit_profile_chef(request):
         id = request.get['id']
         jur = Jur.objects.get(id=id)
         chef_id = jur.user_id
+        order = Order.objects.all()
         if jur.role == 'chef':
             detail = ChefDetail.objects.get(id=chef_id)
             chef = Chef.objects.get(id=chef_id)
-            return render(request, 'chef_profile.html', {'jur': jur, 'detail': detail, 'chef': chef})
+            return render(request, 'chef_profile.html', {'jur': jur, 'detail': detail, 'chef': chef, 'order': order})
     else:
         return redirect('/login/')
 
@@ -347,6 +360,16 @@ def menu(request):
             return render(request, 'our_menu_n.html', {'meal': meal, 'chef': chef})
         else:
             return render(request, 'our_menu_n.html')
+
+def meals(request, id, id2):
+    meal = Meal.objects.get(id=id)
+    if request.method == 'POST':
+        jurgen_id = id2
+        jurgen = Jur.objects.get(id=jurgen_id)
+        return render(request, 'meal.html', {'jurgen': jurgen, 'meal': meal})
+    else:
+        return render(request, 'meal.html', {'meal': meal})
+
 
 def set(request):
     return render(request, 'set.html')

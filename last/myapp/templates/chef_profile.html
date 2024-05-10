@@ -72,9 +72,20 @@
                             
                         </div>
 
-                        <a href="#" class="logo">
-                            <img src="{% static 'img/homemade.svg' %}">
-                        </a>
+                        {% if jurgen %}
+                            <form id="myForm" method="post" action="/menu/">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{jurgen.id}}" name="jur">
+                                <input type="submit" style="display: none;">
+                            </form>
+                            <a href="#" class="logo" id="submitButton">
+                                <img src="{% static 'img/homemade.svg' %}">
+                            </a>
+                        {% else %}
+                            <a href="/menu/" class="logo">
+                                <img src="{% static 'img/homemade.svg' %}">
+                            </a>
+                        {% endif %}
                     </div>
                 
                     <div class="search_location">
@@ -393,17 +404,19 @@
                          w - customer
                          e - meal
                          -->
+
                     {% if order %}
                         {% for q in order %}
                             {% for w in customer %}
                                 {% if q.customer_id == w.id %}
                                     {% for e in meal %}
                                         {% if e.id == q.meal_id %}
-                                            <div class="order_block_wrapper">
+                                            {% if jurgen.user_id == q.chef_id %}
+                                                <div class="order_block_wrapper">
                                                 <div class="orders_block">
                                                     <div class="info_order">
                                                         <p id="number_orders">#{{q.id}}</p>
-                                                        <p id="name_client">Vahabov Matkarim</p>
+                                                        <p id="name_client">Customer {{w.id}}</p>
                                                     </div>
                                                     <div class="info_meal_orders">
                                                         <div id="title_order">
@@ -479,6 +492,7 @@
 
                                                 </div>
                                             </div>
+                                            {% endif %}
                                         {% endif %}
                                     {% endfor %}
                                 {% endif %}
@@ -670,6 +684,13 @@
 
 
     </script>
+<script>
+  document.getElementById("submitButton").addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the default behavior of the anchor tag
 
+      // Submit the form programmatically
+      document.getElementById("myForm").submit();
+  });
+</script>
     </body>
 </html>

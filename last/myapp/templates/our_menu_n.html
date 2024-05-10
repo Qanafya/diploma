@@ -68,9 +68,20 @@
                             </div>
                         </div>
 
-                        <a href="#" class="logo">
-                            <img src="{% static 'img/homemade.svg' %}">
-                        </a>
+                        {% if jurgen %}
+                            <form id="myForm" method="post" action="/menu/">
+                                {% csrf_token %}
+                                <input type="hidden" value="{{jurgen.id}}" name="jur">
+                                <input type="submit" style="display: none;">
+                            </form>
+                            <a href="#" class="logo" id="submitButton">
+                                <img src="{% static 'img/homemade.svg' %}">
+                            </a>
+                        {% else %}
+                            <a href="/menu/" class="logo">
+                                <img src="{% static 'img/homemade.svg' %}">
+                            </a>
+                        {% endif %}
                     </div>
 
                     <div class="search_location">
@@ -154,8 +165,17 @@
                             {% if meal %}
                                 {% for q in meal %}
                                 <div class="top_card">
-                        
-                                <a href="/meal/{{q.id}}/"><img class="top_card_logo" src="{{ q.photo_link }}"></a>
+                                    {% if jurgen %}
+                                        <form id="myForm3" method="post" action="/meals/">
+                                            {% csrf_token %}
+                                            <input type="hidden" value="{{jurgen.id}}" name="jur">
+                                            <input type="hidden" value="{{q.id}}" name="meal_id">
+                                            <input type="submit" style="display: none;">
+                                        </form>
+                                        <a href="/meal/{{q.id}}/{{jurgen.id}}" id="submitButton3"><img class="top_card_logo" src="{{ q.photo_link }}"></a>
+                                    {% else %}
+                                        <a href="/meal/{{q.id}}/"><img class="top_card_logo" src="{{ q.photo_link }}"></a>
+                                    {% endif %}
                                 <div class="top_card_description">
                                     <div class="top_card_title_block">
                                         <div class="top_card_title">
@@ -496,6 +516,20 @@
         closeIcon.addEventListener("click", function() {
         subMenu.classList.remove("open_menu");
         });
+</script>
+    <script>
+  document.getElementById("submitButton").addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the default behavior of the anchor tag
+
+      // Submit the form programmatically
+      document.getElementById("myForm").submit();
+  });
+  document.getElementById("submitButton3").addEventListener("click", function(event) {
+      event.preventDefault(); // Prevent the default behavior of the anchor tag
+
+      // Submit the form programmatically
+      document.getElementById("myForm3").submit();
+  });
 </script>
     </body>
 </html>
