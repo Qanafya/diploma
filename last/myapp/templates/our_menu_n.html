@@ -68,20 +68,10 @@
                             </div>
                         </div>
 
-                        {% if jurgen %}
-                            <form id="myForm" method="post" action="/menu/">
-                                {% csrf_token %}
-                                <input type="hidden" value="{{jurgen.id}}" name="jur">
-                                <input type="submit" style="display: none;">
-                            </form>
-                            <a href="#" class="logo" id="submitButton">
-                                <img src="{% static 'img/homemade.svg' %}">
-                            </a>
-                        {% else %}
+
                             <a href="/menu/" class="logo">
                                 <img src="{% static 'img/homemade.svg' %}">
                             </a>
-                        {% endif %}
                     </div>
 
                     <div class="search_location">
@@ -166,13 +156,13 @@
                                 {% for q in meal %}
                                 <div class="top_card">
                                     {% if jurgen %}
-                                        <form id="myForm3" method="post" action="/meals/">
+                                        <form id="myForm" method="post" action="/meals/">
                                             {% csrf_token %}
                                             <input type="hidden" value="{{jurgen.id}}" name="jur">
                                             <input type="hidden" value="{{q.id}}" name="meal_id">
                                             <input type="submit" style="display: none;">
                                         </form>
-                                        <a href="/meal/{{q.id}}/{{jurgen.id}}" id="submitButton3"><img class="top_card_logo" src="{{ q.photo_link }}"></a>
+                                        <a href="#" id="submitButton"><img class="top_card_logo" src="{{ q.photo_link }}"></a>
                                     {% else %}
                                         <a href="/meal/{{q.id}}/"><img class="top_card_logo" src="{{ q.photo_link }}"></a>
                                     {% endif %}

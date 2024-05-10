@@ -361,14 +361,13 @@ def menu(request):
         else:
             return render(request, 'our_menu_n.html')
 
-def meals(request, id, id2):
-    meal = Meal.objects.get(id=id)
+def meals(request):
     if request.method == 'POST':
-        jurgen_id = id2
-        jurgen = Jur.objects.get(id=jurgen_id)
+        jur = request.POST.get('jur')
+        meal_id = request.POST.get('meal_id')
+        jurgen = Jur.objects.get(id=jur)
+        meal = Meal.objects.get(id=meal_id)
         return render(request, 'meal.html', {'jurgen': jurgen, 'meal': meal})
-    else:
-        return render(request, 'meal.html', {'meal': meal})
 
 
 def set(request):
